@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "c7e8f5a3-9f1e-4a5c-b8d7-3a5e9e8c6f4d",
+		"name": "LlamaSearch API",
+		"description": "A comprehensive collection for the LlamaSearch API, providing advanced search capabilities with multi-engine integration and AI-powered features.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Get API Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"token"
+							]
+						},
+						"description": "Authenticates a user and returns a JWT token for API access"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh_token\": \"{{refresh_token}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "Refreshes an expired JWT token using a refresh token"
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/revoke",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"revoke"
+							]
+						},
+						"description": "Revokes the current JWT token"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints for the LlamaSearch API"
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Basic Search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/search?q={{query}}&provider=all&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{query}}"
+								},
+								{
+									"key": "provider",
+									"value": "all"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Performs a basic search across all configured providers"
+					},
+					"response": []
+				},
+				{
+					"name": "Advanced Search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"{{query}}\",\n    \"providers\": [\"google\", \"brave\", \"perplexity\"],\n    \"filters\": {\n        \"date_range\": {\n            \"start\": \"2023-01-01\",\n            \"end\": \"2023-12-31\"\n        },\n        \"domains\": [\"example.com\", \"github.com\"],\n        \"exclude_domains\": [\"spam.com\"],\n        \"content_type\": [\"article\", \"research\"]\n    },\n    \"options\": {\n        \"limit\": 20,\n        \"offset\": 0,\n        \"rank_by\": \"relevance\",\n        \"safe_search\": true,\n        \"deduplicate\": true\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/search/advanced",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"search",
+								"advanced"
+							]
+						},
+						"description": "Performs an advanced search with filtering options"
+					},
+					"response": []
+				},
+				{
+					"name": "Provider-Specific Search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/search/provider/{{provider}}?q={{query}}&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"search",
+								"provider",
+								"{{provider}}"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{{query}}"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Performs a search using a specific provider"
+					},
+					"response": []
+				},
+				{
+					"name": "Semantic Search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"{{query}}\",\n    \"context\": \"{{context}}\",\n    \"model\": \"text-embedding-ada-002\",\n    \"options\": {\n        \"limit\": 10,\n        \"similarity_threshold\": 0.75\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/search/semantic",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"search",
+								"semantic"
+							]
+						},
+						"description": "Performs a semantic search using embeddings"
+					},
+					"response": []
+				}
+			],
+			"description": "Search endpoints for finding information across multiple providers"
+		},
+		{
+			"name": "RAG (Retrieval-Augmented Generation)",
+			"item": [
+				{
+					"name": "Generate Answer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"{{query}}\",\n    \"search_params\": {\n        \"providers\": [\"google\", \"perplexity\"],\n        \"limit\": 5\n    },\n    \"llm_params\": {\n        \"model\": \"gpt-4\",\n        \"temperature\": 0.7,\n        \"max_tokens\": 500\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rag/answer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rag",
+								"answer"
+							]
+						},
+						"description": "Generates an answer to a question using search results as context"
+					},
+					"response": []
+				},
+				{
+					"name": "Document Search & Extract",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": \"{{query}}\",\n    \"document_id\": \"{{document_id}}\",\n    \"extraction_format\": \"structured_json\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rag/extract",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rag",
+								"extract"
+							]
+						},
+						"description": "Searches within a specific document and extracts relevant information"
+					},
+					"response": []
+				},
+				{
+					"name": "Research Assistant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"research_question\": \"{{research_question}}\",\n    \"depth\": \"comprehensive\",\n    \"format\": \"essay\",\n    \"tone\": \"academic\",\n    \"max_length\": 1500,\n    \"sources\": {\n        \"min_sources\": 5,\n        \"include_citations\": true\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/rag/research",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"rag",
+								"research"
+							]
+						},
+						"description": "Conducts in-depth research on a topic and generates a comprehensive response"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for Retrieval-Augmented Generation to provide AI-generated answers based on search results"
+		},
+		{
+			"name": "Documents",
+			"item": [
+				{
+					"name": "Upload Document",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "metadata",
+									"value": "{\"title\": \"Sample Document\", \"tags\": [\"important\", \"research\"]}"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/documents/upload",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"documents",
+								"upload"
+							]
+						},
+						"description": "Uploads a document for indexing and searching"
+					},
+					"response": []
+				},
+				{
+					"name": "List Documents",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/documents?limit=20&offset=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"documents"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						},
+						"description": "Lists documents uploaded by the user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/documents/{{document_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"documents",
+								"{{document_id}}"
+							]
+						},
+						"description": "Retrieves a specific document by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Document",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/documents/{{document_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"documents",
+								"{{document_id}}"
+							]
+						},
+						"description": "Deletes a document by ID"
+					},
+					"response": []
+				}
+			],
+			"description": "Document management endpoints for uploading, listing, retrieving, and deleting documents"
+		},
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{new_username}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{new_password}}\",\n    \"full_name\": \"{{full_name}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Registers a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/users/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						},
+						"description": "Retrieves the current user's profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"{{updated_full_name}}\",\n    \"email\": \"{{updated_email}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						},
+						"description": "Updates the current user's profile information"
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"{{current_password}}\",\n    \"new_password\": \"{{new_password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/users/me/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me",
+								"password"
+							]
+						},
+						"description": "Changes the current user's password"
+					},
+					"response": []
+				}
+			],
+			"description": "User management endpoints for registration, profile management, and password changes"
+		},
+		{
+			"name": "Search History",
+			"item": [
+				{
+					"name": "Get Search History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/history?limit=20&offset=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"history"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						},
+						"description": "Retrieves the user's search history"
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Search History",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/history",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"history"
+							]
+						},
+						"description": "Clears the user's search history"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Search Insights",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/history/insights?timeframe=month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"history",
+								"insights"
+							],
+							"query": [
+								{
+									"key": "timeframe",
+									"value": "month"
+								}
+							]
+						},
+						"description": "Retrieves insights and analytics about the user's search patterns"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing and analyzing search history"
+		},
+		{
+			"name": "System",
+			"item": [
+				{
+					"name": "Get API Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"status"
+							]
+						},
+						"description": "Checks the status of the API"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Providers Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/status/providers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"status",
+								"providers"
+							]
+						},
+						"description": "Checks the status of all search providers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get API Documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/docs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"docs"
+							]
+						},
+						"description": "Retrieves the OpenAPI documentation"
+					},
+					"response": []
+				}
+			],
+			"description": "System and status endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Automatically extract and save the access token when authenticating",
+					"if (pm.response.code === 200 && pm.request.url.toString().includes('/api/auth/token')) {",
+					"    var responseJson = pm.response.json();",
+					"    if (responseJson.access_token) {",
+					"        pm.environment.set('access_token', responseJson.access_token);",
+					"        console.log('Access token saved to environment');",
+					"    }",
+					"    if (responseJson.refresh_token) {",
+					"        pm.environment.set('refresh_token', responseJson.refresh_token);",
+					"        console.log('Refresh token saved to environment');",
+					"    }",
+					"}",
+					"",
+					"// Basic response validation",
+					"pm.test(\"Status code is 200 OK or 201 Created\", function () {",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+					"});",
+					"",
+					"pm.test(\"Response time is less than 1000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+					"});",
+					"",
+					"pm.test(\"Response has JSON content type\", function () {",
+					"    if (pm.response.headers.get('Content-Type')) {",
+					"        pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "The base URL for the LlamaSearch API"
+		},
+		{
+			"key": "username",
+			"value": "testuser",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password123",
+			"type": "string"
+		},
+		{
+			"key": "query",
+			"value": "artificial intelligence research",
+			"type": "string"
+		},
+		{
+			"key": "provider",
+			"value": "google",
+			"type": "string"
+		},
+		{
+			"key": "document_id",
+			"value": "doc123",
+			"type": "string"
+		},
+		{
+			"key": "research_question",
+			"value": "What are the latest advancements in quantum computing?",
+			"type": "string"
+		},
+		{
+			"key": "context",
+			"value": "I'm researching the latest developments in AI for my academic paper",
+			"type": "string"
+		}
+	]
+} 

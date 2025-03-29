@@ -1,0 +1,120 @@
+# Core dependencies
+fastapi>=0.95.0
+uvicorn>=0.22.0
+sqlalchemy>=2.0.15
+pydantic>=1.10.7
+python-dotenv>=1.0.0
+httpx>=0.24.0
+aiohttp>=3.8.4
+aiofiles>=23.1.0
+click>=8.1.3
+click-help-colors>=0.9.1
+rich>=13.4.2
+
+# CLI and GUI
+PySimpleGUI>=4.60.4
+typer>=0.9.0
+questionary>=2.0.1
+
+# AI and LLM
+openai>=1.1.0
+anthropic>=0.3.0
+transformers>=4.26.0
+torch>=2.0.0
+numpy>=1.24.0
+
+# Database
+alembic>=1.11.1
+asyncpg>=0.27.0
+aiosqlite>=0.18.0
+
+# PDF Processing
+PyPDF2>=3.0.1
+pytesseract>=0.3.10
+pillow>=9.4.0
+pymupdf>=1.21.0
+ocrmypdf>=15.1.0
+weasyprint>=60.1
+reportlab>=4.0.0
+
+# Web Scraping
+beautifulsoup4>=4.12.2
+fake-useragent>=1.1.1
+selenium>=4.9.0
+playwright>=1.35.1
+html2text>=2020.1.16
+markdownify>=0.11.6
+
+# Academic
+arxiv>=1.4.2
+pymed>=1.4.0
+biopython>=1.81
+pybtex>=0.24.0
+scholarly>=1.7.11
+
+# Code Analysis
+pylint>=2.17.0
+flake8>=6.0.0
+black>=23.3.0
+isort>=5.12.0
+mypy>=1.3.0
+radon>=6.0.1
+bandit>=1.7.5
+
+# Utilities
+tqdm>=4.65.0
+colorama>=0.4.6
+structlog>=23.2.0
+tenacity>=8.2.0
+requests>=2.31.0
+lru-dict>=1.1.8
+pyyaml>=6.0.1
+tomli>=2.0.1
+packaging>=23.1
+psutil>=5.9.5
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.11.1
+tox>=4.11.0
+responses>=0.23.1
+
+# Development
+pre-commit>=3.3.2
+black>=23.3.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.3.0
+
+# Server (for API mode)
+flask>=2.2.0
+flask-cors>=3.0.10
+prometheus-client>=0.16.0
+fastapi-utils>=0.2.1
+uvicorn[standard]>=0.22.0
+starlette>=0.27.0
+jinja2>=3.1.2
+itsdangerous>=2.1.2
+pyjwt>=2.7.0
+python-multipart>=0.0.6
+
+# Documentation
+mkdocs>=1.4.3
+mkdocs-material>=9.1.15
+mkdocstrings>=0.22.0
+mkdocstrings-python>=1.1.2
+
+# Apple Silicon (optional for Mac M1/M2)
+# mlx>=0.0.5
+# mlx-lm>=0.0.3
+# mix-whisper>=0.0.1
+# mix-hub>=0.0.1
+# mix-use>=0.0.1
+# mix-embeddings>=0.0.1
+# mix-textgen>=0.0.1
+
+# Audio Processing
+librosa>=0.10.0
+ffmpeg-python>=0.2.0 

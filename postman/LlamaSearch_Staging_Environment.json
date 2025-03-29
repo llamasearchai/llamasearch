@@ -1,0 +1,69 @@
+{
+  "id": "f8d3e5a1-2c7b-4f6e-8d9a-3e1c5f4d2b6a",
+  "_postman_variable_scope": "environment",
+  "name": "LlamaSearch Staging",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "https://staging-api.llamasearch.ai",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "username",
+      "value": "test_staging_user",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "password",
+      "value": "st4g1ng-p4ssw0rd",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "query",
+      "value": "artificial intelligence research",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "provider",
+      "value": "google",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "document_id",
+      "value": "stg_doc123",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "research_question",
+      "value": "What are the latest advancements in quantum computing?",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "context",
+      "value": "I'm researching the latest developments in AI for my academic paper",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_exported_at": "2024-03-24T18:00:00.000Z",
+  "_postman_exported_using": "Postman/10.13.5"
+} 

@@ -1,0 +1,64 @@
+# LlamaFind Ultra Configuration
+
+app_name = "LlamaFind Ultra"
+version = "1.0.0"
+debug = false
+
+[server]
+host = "127.0.0.1"
+port = 8000
+workers = 4
+timeout = 60
+
+[features]
+mlx_enabled = false
+metrics_enabled = false
+search_enabled = true
+finance_enabled = true
+chat_enabled = true
+
+[models]
+default = "gpt-3.5-turbo"
+
+[models.openai]
+name = "OpenAI GPT"
+description = "OpenAI GPT models"
+model_type = "remote"
+framework = "openai"
+model_id = "gpt-3.5-turbo"
+max_input_length = 4096
+max_output_length = 1024
+
+[models.anthropic]
+name = "Anthropic Claude"
+description = "Anthropic Claude models"
+model_type = "remote"
+framework = "anthropic"
+model_id = "claude-3-opus-20240229"
+max_input_length = 100000
+max_output_length = 4096
+
+[search]
+default_engine = "brave"
+num_results = 10
+
+[search.brave]
+api_base = "https://api.search.brave.com/res/v1"
+
+[search.google]
+api_base = "https://customsearch.googleapis.com/customsearch/v1"
+
+[search.perplexity]
+api_base = "https://api.perplexity.ai"
+
+[search.tavily]
+api_base = "https://api.tavily.com/v1"
+
+[api_keys]
+openai = "$OPENAI_API_KEY"
+anthropic = "$ANTHROPIC_API_KEY"
+brave = "$LLAMASEARCH_BRAVE_API_KEY"
+google = "$GOOGLE_API_KEY"
+perplexity = "$LLAMASEARCH_PERPLEXITY_API_KEY"
+tavily = "$LLAMASEARCH_TAVILY_API_KEY"
+exa = "$LLAMASEARCH_EXA_API_KEY" 
