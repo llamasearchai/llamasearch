@@ -1,0 +1,69 @@
+{
+  "id": "e7a2f8c4-6b5d-4e1c-9f3a-2d8e7c6b5f4a",
+  "_postman_variable_scope": "environment",
+  "name": "LlamaSearch Development",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "username",
+      "value": "testuser",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "password",
+      "value": "testpassword",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "query",
+      "value": "artificial intelligence research",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "provider",
+      "value": "google",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "document_id",
+      "value": "doc123",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "research_question",
+      "value": "What are the latest advancements in quantum computing?",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "context",
+      "value": "I'm researching the latest developments in AI for my academic paper",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_exported_at": "2024-03-24T18:00:00.000Z",
+  "_postman_exported_using": "Postman/10.13.5"
+} 
